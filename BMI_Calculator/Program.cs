@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/* Name  - Gurmanpreet Kaur 
+ * Student Number - 300933392
+ * description - Created the form for BMI Calculator
+ * version 0.1 - Created the project
+ * */
 namespace BMI_Calculator
 {
     static class Program
@@ -16,7 +20,7 @@ namespace BMI_Calculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new BMIcalculator());
         }
     }
 }

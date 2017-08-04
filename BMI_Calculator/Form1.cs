@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/* Name  - Gurmanpreet Kaur 
+ * Student Number - 300933392
+ * description - Created the form for BMI Calculator
+ * version 0.1 - Created the project
+ * */
 namespace BMI_Calculator
 {
-    public partial class Form1 : Form
+    public partial class BMIcalculator : Form
     {
-        public Form1()
+        public BMIcalculator()
         {
             InitializeComponent();
         }
