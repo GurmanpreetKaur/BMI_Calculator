@@ -10,7 +10,7 @@ using System.Windows.Forms;
 /* Name  - Gurmanpreet Kaur 
  * Student Number - 300933392
  * description - Created the form for BMI Calculator
- * version 0.1 - Created the project
+ * version 0.2 - Added functionality to Calculate BMI button AND Addded a new method so that the user must select any of the unit values
  * */
 namespace BMI_Calculator
 {
@@ -63,6 +63,16 @@ namespace BMI_Calculator
                 double BMI = 0;
                 BMI = (weight * 703) / (height * height);
                 ResultTextBox.Text = "" + BMI;
+            }
+        }
+
+        private void BMIcalculator_Load(object sender, EventArgs e)
+        {
+            HeightTextBox.Text = "0";
+            WeightTextBox.Text = "0";
+            if (MetricButton.Checked == false && ImpericalButton.Checked == false)
+            {
+                ResultTextBox.Text = "Please select unit value!!";
             }
         }
     }
