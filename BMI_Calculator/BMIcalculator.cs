@@ -155,5 +155,41 @@ namespace BMI_Calculator
         {
             Application.Exit();
         }
+
+        private void CalculatorTableLayout_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void WeightTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+           (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            _clear();
+           
+        }
+
+        private void _clear()
+        {
+            HeightTextBox.Text = "";
+            WeightTextBox.Text = "";
+            ImpericalButton.Checked = false;
+            MetricButton.Checked = false;
+            ResultTextBox.Text = "";
+            BMIscaleTextBox.Text = "";
+        }
     }
 }
