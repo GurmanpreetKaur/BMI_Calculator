@@ -25,8 +25,8 @@ namespace BMI_Calculator
         {
             if(MetricButton.Checked)
             {
-                HeightUnitLabel.Text = "Meter";
-                WeightUnitLabel.Text = "Kilogram";
+                HeightUnitLabel.Text = "Meters";
+                WeightUnitLabel.Text = "Kilograms";
             }
             
         }
@@ -57,6 +57,7 @@ namespace BMI_Calculator
                     weight = Convert.ToDouble(WeightTextBox.Text);
                     double BMI = 0;
                     BMI = weight / (height * height);
+                    BMI = Math.Round(BMI, 2);
                     ResultTextBox.Text = "" + BMI;
                 }
             }
@@ -74,6 +75,7 @@ namespace BMI_Calculator
                     weight = Convert.ToDouble(WeightTextBox.Text);
                     double BMI = 0;
                     BMI = (weight * 703) / (height * height);
+                    BMI = Math.Round(BMI,2);
                     ResultTextBox.Text = "" + BMI;
                 }
             }
@@ -103,7 +105,7 @@ namespace BMI_Calculator
             {
                 ResultTextBox.Text = "Please select unit value!!";
             }
-        }
+      }
 
         private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {

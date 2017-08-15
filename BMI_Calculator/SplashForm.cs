@@ -28,10 +28,6 @@ namespace BMI_Calculator
             BmiCalculator.Show();
             this.Hide();
             SplashFormTimer.Enabled = false; // turns timer off
-            
-            
-           
-
-        }
+            }
     }
 }
