@@ -10,7 +10,7 @@ using System.Windows.Forms;
 /* Name  - Gurmanpreet Kaur 
  * Student Number - 300933392
  * description - Created the form for BMI Calculator
- * version 0.2 - Added functionality to Calculate BMI button AND Addded a new method so that the user must select any of the unit values
+ * version 0.3 - Added SpalshForm and added the formclosing event handler
  * */
 namespace BMI_Calculator
 {
@@ -43,26 +43,55 @@ namespace BMI_Calculator
 
         private void ResultButton_Click(object sender, EventArgs e)
         {
-            
-            if (MetricButton.Checked)
+            if (HeightTextBox.Text == null || WeightTextBox.Text == null)
             {
-                double height = 0;
-                double weight = 0;
-                height = Convert.ToDouble(HeightTextBox.Text);
-                weight = Convert.ToDouble(WeightTextBox.Text);
-                double BMI = 0;
-                BMI = (weight) / (height * height);
-                ResultTextBox.Text = "" + BMI;
+                ResultTextBox.Text = "Please enter any value!!";
+            }
+            else
+            {
+                if (MetricButton.Checked)
+                {
+                    double height = 0;
+                    double weight = 0;
+                    height = Convert.ToDouble(HeightTextBox.Text);
+                    weight = Convert.ToDouble(WeightTextBox.Text);
+                    double BMI = 0;
+                    BMI = weight / (height * height);
+                    ResultTextBox.Text = "" + BMI;
+                }
             }
             if(ImpericalButton.Checked)
             {
-                double height = 0;
-                double weight = 0;
-                height = Convert.ToDouble(HeightTextBox.Text);
-                weight = Convert.ToDouble(WeightTextBox.Text);
-                double BMI = 0;
-                BMI = (weight * 703) / (height * height);
-                ResultTextBox.Text = "" + BMI;
+                if (HeightTextBox.Text == null || WeightTextBox.Text == null)
+                {
+                    ResultTextBox.Text = "Please enter any value!!";
+                }
+                else
+                {
+                    double height = 0;
+                    double weight = 0;
+                    height = Convert.ToDouble(HeightTextBox.Text);
+                    weight = Convert.ToDouble(WeightTextBox.Text);
+                    double BMI = 0;
+                    BMI = (weight * 703) / (height * height);
+                    ResultTextBox.Text = "" + BMI;
+                }
+            }
+            if (Convert.ToDouble(ResultTextBox.Text) < 18.5)
+            {
+                BMIscaleTextBox.Text = "Your are UnderWeight";
+            }
+            if (Convert.ToDouble(ResultTextBox.Text) >= 18.5 && Convert.ToDouble(ResultTextBox.Text) <= 24.9)
+            {
+                BMIscaleTextBox.Text = "Your are Normal";
+            }
+            if (Convert.ToDouble(ResultTextBox.Text) >= 25 && Convert.ToDouble(ResultTextBox.Text) <= 29.9)
+            {
+                BMIscaleTextBox.Text = "Your are Overweight";
+            }
+            if (Convert.ToDouble(ResultTextBox.Text) >= 30)
+            {
+                BMIscaleTextBox.Text = "Your are Obesed";
             }
         }
 
@@ -74,6 +103,57 @@ namespace BMI_Calculator
             {
                 ResultTextBox.Text = "Please select unit value!!";
             }
+        }
+
+        private void HeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(HeightTextBox.Text == "0")
+            {
+                HeightTextBox.Text = HeightTextBox.Text;
+            }
+        }
+
+        private void WeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (WeightTextBox.Text == "0")
+            {
+                WeightTextBox.Text = WeightTextBox.Text;
+
+                    }
+        }
+
+      
+
+        private void BMIscaleTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+           
+
+
+
+        }
+
+        private void HeightTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+       (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        /// <summary>
+        /// this is an event handler for the "FormClosing" event 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BMIcalculator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
