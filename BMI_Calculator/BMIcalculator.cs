@@ -10,17 +10,63 @@ using System.Windows.Forms;
 /* Name  - Gurmanpreet Kaur 
  * Student Number - 300933392
  * description - Created the form for BMI Calculator
- * version 0.3 - Added SpalshForm and added the formclosing event handler
+ * version 0.4 - Modified the ResultButton_Click method and added proper comments for all the methods
  * */
 namespace BMI_Calculator
 {
     public partial class BMIcalculator : Form
     {
+        
+        //private instance variables ------------------------
+        private double _height;
+        private double _weight;
+        private double _result;
+
+        //public properties-------------------
+        public new double Height
+        {
+            get
+            {
+                return this._height;
+            }
+            set
+            {
+                this._height = value;
+            }
+        }
+        public double Weight
+        {
+            get
+            {
+                return this._weight;
+            }
+            set
+            {
+                this._weight = value;
+            }
+        }
+  
+        public double Result
+        {
+            get
+            {
+                return this._result;
+            }
+            set
+            {
+                this._result = value;
+            }
+        }
+
         public BMIcalculator()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// This is the method that shows unit values if Metric Button is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MetricButton_CheckedChanged(object sender, EventArgs e)
         {
             if(MetricButton.Checked)
@@ -31,6 +77,11 @@ namespace BMI_Calculator
             
         }
 
+        /// <summary>
+        /// This is the method that shows unit values if Imperial Button is checked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImpericalButton_CheckedChanged(object sender, EventArgs e)
         {
             if(ImpericalButton.Checked)
@@ -40,45 +91,41 @@ namespace BMI_Calculator
             }
            
         }
-
+        /// <summary>
+        /// This is the method that does the calculation when calculate BMI buttonis pressed based on the unit value selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ResultButton_Click(object sender, EventArgs e)
         {
             if (HeightTextBox.Text == null || WeightTextBox.Text == null)
             {
                 ResultTextBox.Text = "Please enter any value!!";
             }
-            else
+            if (MetricButton.Checked)
+                {
+                this.Height = Convert.ToDouble(HeightTextBox.Text);
+                this.Weight = Convert.ToDouble(WeightTextBox.Text);
+                    this.Result = this.Weight / (this.Height * this.Height);
+                    this.Result = Math.Round(this.Result, 2);
+                    ResultTextBox.Text = this.Result.ToString();
+                }
+            if (ImpericalButton.Checked)
             {
-                if (MetricButton.Checked)
-                {
-                    double height = 0;
-                    double weight = 0;
-                    height = Convert.ToDouble(HeightTextBox.Text);
-                    weight = Convert.ToDouble(WeightTextBox.Text);
-                    double BMI = 0;
-                    BMI = weight / (height * height);
-                    BMI = Math.Round(BMI, 2);
-                    ResultTextBox.Text = "" + BMI;
+                this.Height = Convert.ToDouble(HeightTextBox.Text);
+                this.Weight = Convert.ToDouble(WeightTextBox.Text);
+                this.Result = (this.Weight * 703) / (this.Height * this.Height);
+                    this.Result = Math.Round(this.Result,2);
+                    ResultTextBox.Text = this.Result.ToString();
                 }
-            }
-            if(ImpericalButton.Checked)
-            {
-                if (HeightTextBox.Text == null || WeightTextBox.Text == null)
-                {
-                    ResultTextBox.Text = "Please enter any value!!";
-                }
-                else
-                {
-                    double height = 0;
-                    double weight = 0;
-                    height = Convert.ToDouble(HeightTextBox.Text);
-                    weight = Convert.ToDouble(WeightTextBox.Text);
-                    double BMI = 0;
-                    BMI = (weight * 703) / (height * height);
-                    BMI = Math.Round(BMI,2);
-                    ResultTextBox.Text = "" + BMI;
-                }
-            }
+            BMIscale();
+        }
+
+        /// <summary>
+        /// This is the method that shows the message according to the BMI calculated
+        /// </summary>
+        private void BMIscale()
+        {
             if (Convert.ToDouble(ResultTextBox.Text) < 18.5)
             {
                 BMIscaleTextBox.Text = "Your are UnderWeight";
@@ -97,6 +144,11 @@ namespace BMI_Calculator
             }
         }
 
+        /// <summary>
+        /// This is the method that gives 0 to height and weight by default and it askes the user to select any of the unit values
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BMIcalculator_Load(object sender, EventArgs e)
         {
             HeightTextBox.Text = "0";
@@ -109,31 +161,24 @@ namespace BMI_Calculator
 
         private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            if(HeightTextBox.Text == "0")
-            {
-                HeightTextBox.Text = HeightTextBox.Text;
-            }
+           
         }
 
         private void WeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (WeightTextBox.Text == "0")
-            {
-                WeightTextBox.Text = WeightTextBox.Text;
-
-                    }
         }
 
       
 
         private void BMIscaleTextBox_TextChanged_1(object sender, EventArgs e)
         {
-           
-
-
-
         }
 
+        /// <summary>
+        /// This is the method that forces the user to enter only numeric values
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeightTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
@@ -148,6 +193,7 @@ namespace BMI_Calculator
                 e.Handled = true;
             }
         }
+        /* I found this code from this site : https://stackoverflow.com/questions/463299/how-do-i-make-a-textbox-that-only-accepts-numbers */
         /// <summary>
         /// this is an event handler for the "FormClosing" event 
         /// </summary>
@@ -162,7 +208,11 @@ namespace BMI_Calculator
         {
 
         }
-
+        /// <summary>
+        /// This is the method that forces the user to enter only numeric values
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WeightTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
@@ -177,13 +227,18 @@ namespace BMI_Calculator
                 e.Handled = true;
             }
         }
-
+        /// <summary>
+        /// this method describes the function of Reset Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ResetButton_Click(object sender, EventArgs e)
         {
             _clear();
-           
         }
-
+        /// <summary>
+        /// This is the clear method that clears everything 
+        /// </summary>
         private void _clear()
         {
             HeightTextBox.Text = "";

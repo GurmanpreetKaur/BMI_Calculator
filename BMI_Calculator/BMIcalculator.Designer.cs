@@ -40,12 +40,12 @@
             this.ResultTextBox = new System.Windows.Forms.TextBox();
             this.WeightUnitLabel = new System.Windows.Forms.Label();
             this.BMIscaleTextBox = new System.Windows.Forms.TextBox();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.MetricButton = new System.Windows.Forms.RadioButton();
             this.ImpericalButton = new System.Windows.Forms.RadioButton();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ResetButton = new System.Windows.Forms.Button();
             this.CalculatorTableLayout.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -187,6 +187,19 @@
             this.BMIscaleTextBox.TabIndex = 10;
             this.BMIscaleTextBox.TextChanged += new System.EventHandler(this.BMIscaleTextBox_TextChanged_1);
             // 
+            // ResetButton
+            // 
+            this.CalculatorTableLayout.SetColumnSpan(this.ResetButton, 2);
+            this.ResetButton.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetButton.ForeColor = System.Drawing.Color.Black;
+            this.ResetButton.Location = new System.Drawing.Point(137, 111);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(128, 34);
+            this.ResetButton.TabIndex = 12;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // MetricButton
             // 
             this.MetricButton.AutoSize = true;
@@ -208,10 +221,10 @@
             this.ImpericalButton.ForeColor = System.Drawing.Color.Black;
             this.ImpericalButton.Location = new System.Drawing.Point(164, 45);
             this.ImpericalButton.Name = "ImpericalButton";
-            this.ImpericalButton.Size = new System.Drawing.Size(113, 29);
+            this.ImpericalButton.Size = new System.Drawing.Size(104, 29);
             this.ImpericalButton.TabIndex = 2;
             this.ImpericalButton.TabStop = true;
-            this.ImpericalButton.Text = "Imperical";
+            this.ImpericalButton.Text = "Imperial";
             this.ImpericalButton.UseVisualStyleBackColor = true;
             this.ImpericalButton.CheckedChanged += new System.EventHandler(this.ImpericalButton_CheckedChanged);
             // 
@@ -226,19 +239,6 @@
             // 
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
-            // 
-            // ResetButton
-            // 
-            this.CalculatorTableLayout.SetColumnSpan(this.ResetButton, 2);
-            this.ResetButton.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetButton.ForeColor = System.Drawing.Color.Black;
-            this.ResetButton.Location = new System.Drawing.Point(137, 111);
-            this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(128, 34);
-            this.ResetButton.TabIndex = 12;
-            this.ResetButton.Text = "Reset";
-            this.ResetButton.UseVisualStyleBackColor = true;
-            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // BMIcalculator
             // 
